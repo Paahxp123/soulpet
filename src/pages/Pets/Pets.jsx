@@ -44,8 +44,8 @@ export function Pets() {
               <Card key={pet.id} className="card-pet">
                 <div
                   onClick={() => navigate(`/pets/pet/${pet.id}`)}
-                  style={{ cursor: "pointer"}}
-                  >
+                  style={{ cursor: "pointer" }}
+                >
                   <div className="card-img">
                     <img src={avatar} alt="" />
                   </div>
@@ -56,7 +56,7 @@ export function Pets() {
                     </Card.Title>
                     <span>Raça:</span>
                     <Card.Title>
-                      {pet.tipo.charAt(0).toUpperCase() + pet.tipo.slice(1)}
+                      {pet.tipo.split(" ")[0].charAt(0).toUpperCase() + pet.tipo.split(" ")[0].slice(1)}
                     </Card.Title>
                     <span>Porte:</span>
                     <Card.Title>
