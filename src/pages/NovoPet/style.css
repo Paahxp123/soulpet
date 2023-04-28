@@ -13,13 +13,13 @@
     flex-wrap: wrap;
 }
 
-.btn-back{
+.btn-brown{
     background: none;
     background-color: #3b2712;
     border: none;
 }
 
-.btn-back:hover{
+.btn-brown:hover{
     color: #fff;
     background: #90602d;
 }
