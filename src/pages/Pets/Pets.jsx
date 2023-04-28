@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button,Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Button, Card } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
 import avatar from "../../assets/vet.png";
@@ -25,6 +25,7 @@ export function Pets() {
       });
   }
 
+  const navigate = useNavigate();
 
   return (
     <div className="container container-lista-pets">
@@ -41,29 +42,34 @@ export function Pets() {
           pets.map((pet) => {
             return (
               <Card key={pet.id} className="card-pet">
-                <div className="card-img">
-                  <img src={avatar} alt="" />
+                <div
+                  onClick={() => navigate(`/pets/pet/${pet.id}`)}
+                  style={{ cursor: "pointer"}}
+                  >
+                  <div className="card-img">
+                    <img src={avatar} alt="" />
+                  </div>
+                  <Card.Body className="card-body">
+                    <span>Nome:</span>
+                    <Card.Title>
+                      {pet.nome.charAt(0).toUpperCase() + pet.nome.slice(1)}
+                    </Card.Title>
+                    <span>Raça:</span>
+                    <Card.Title>
+                      {pet.tipo.charAt(0).toUpperCase() + pet.tipo.slice(1)}
+                    </Card.Title>
+                    <span>Porte:</span>
+                    <Card.Title>
+                      {pet.porte.charAt(0).toUpperCase() + pet.porte.slice(1)}
+                    </Card.Title>
+                    <span>Nascimento:</span>
+                    <Card.Title>
+                      {new Date(pet.dataNasc).toLocaleDateString("pt-BR")}
+                    </Card.Title>
+                  </Card.Body>
                 </div>
-                <Card.Body className="card-body">
-                  <span>Nome:</span>
-                  <Card.Title>
-                    {pet.nome.charAt(0).toUpperCase() + pet.nome.slice(1)}
-                  </Card.Title>
-                  <span>Raça:</span>
-                  <Card.Title>
-                    {pet.tipo.charAt(0).toUpperCase() + pet.tipo.slice(1)}
-                  </Card.Title>
-                  <span>Porte:</span>
-                  <Card.Title>
-                    {pet.porte.charAt(0).toUpperCase() + pet.porte.slice(1)}
-                  </Card.Title>
-                  <span>Nascimento:</span>
-                  <Card.Title>
-                    {new Date(pet.dataNasc).toLocaleDateString("pt-BR")}
-                  </Card.Title>
-                </Card.Body>
                 <div className="container-btn-pets">
-                  <Button>
+                  <Button to={"/"}>
                     <i className="bi bi-trash-fill"></i>
                   </Button>
                   <Button>

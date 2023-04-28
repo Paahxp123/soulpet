@@ -13,7 +13,12 @@
     margin-bottom: 50px;
 }
 
-.container-lista-pets .card-pet{
+.container-lista-pets .link-card{
+    color: black;
+    text-decoration: none;
+}
+
+.card-pet{
     width: 380px;
     padding: 10px;
     display: flex;
@@ -28,21 +33,34 @@
     margin-bottom: 15px;
 }
 
-.container-lista-pets .card-body{
+.card-body{
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 10px;
 }
 
-.container-lista-pets .container-btn-pets{
+.container-btn-pets{
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 8px 15px;
 }
 
-.container-lista-pets .container-btn-pets button{
+.container-btn-pets button{
     background-color: #3b2712;
     border: none;
 }
 
+.container-btn-pets button:hover{
+    background-color: #90602d;
+    border: none;
+}
+
+.container-btn-pets .btn-check:checked+.btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check)+.btn:active {
+    color: #fff;
+    background: #90602d;
+}
