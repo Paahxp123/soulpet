@@ -58,7 +58,7 @@ export function NovoPet() {
   return (
     <div className="form-novoPet">
       <div className="container">
-        <Button as={Link} to="/pets" className="btn-back">
+        <Button as={Link} to="/pets" className="btn-brown">
           <i class="bi bi-arrow-bar-left"></i> Voltar
         </Button>
         <div className="container-formPet">
