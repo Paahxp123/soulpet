@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
-import { toast } from "react-hot-toast";
 import avatar from "../../assets/vet.png";
 import "./style.css";
 
@@ -24,7 +23,6 @@ export function Pets() {
         console.log(error);
       });
   }
-
   const navigate = useNavigate();
 
   return (
@@ -56,7 +54,8 @@ export function Pets() {
                     </Card.Title>
                     <span>Raça:</span>
                     <Card.Title>
-                      {pet.tipo.split(" ")[0].charAt(0).toUpperCase() + pet.tipo.split(" ")[0].slice(1)}
+                      {pet.tipo.split(" ")[0].charAt(0).toUpperCase() +
+                        pet.tipo.split(" ")[0].slice(1)}
                     </Card.Title>
                     <span>Porte:</span>
                     <Card.Title>
@@ -64,7 +63,7 @@ export function Pets() {
                     </Card.Title>
                     <span>Nascimento:</span>
                     <Card.Title>
-                      {new Date(pet.dataNasc).toLocaleDateString("pt-BR")}
+                      {new Date(`${pet.dataNasc}T00:00:00`).toLocaleDateString( "pt-BR")}
                     </Card.Title>
                   </Card.Body>
                 </div>

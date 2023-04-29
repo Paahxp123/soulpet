@@ -1,25 +1,17 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
-import { useForm } from "react-hook-form";
-import { toast } from "react-hot-toast";
+import { Button, Card } from "react-bootstrap";
 import avatar from "../../assets/vet.png";
 import "./style.css";
 
 export function PetSingle() {
   const [cliente, setCliente] = useState({});
   const [pet, setPet] = useState({})
-  const [nome, setNome] = useState("");
-  
-  function handleNomeChange(event) {
-    setNome(event.target.value);
-  }
   
   const { id } = useParams();
-  console.log(cliente);
-  const idCliente = pet.clienteId;
+  const dataNasc = new Date(`${pet.dataNasc}T00:00:00`);
   
   useEffect(() => {
     axios
@@ -79,9 +71,7 @@ export function PetSingle() {
                 {cliente.nome && cliente.nome.split(" ").slice(0, 2).join(" ")}
               </Card.Title>
               <span>Nascimento:</span>
-              <Card.Title>
-                {new Date(pet.dataNasc).toLocaleDateString("pt-BR")}
-              </Card.Title>
+              <Card.Title>{dataNasc.toLocaleDateString("pt-BR")}</Card.Title>
             </Card.Body>
             <div className="container-btn-pets">
               <Button>
