@@ -1,18 +1,53 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import avatar from "../../assets/vet.png";
+import { toast } from "react-hot-toast";
 import "./style.css";
 
 export function PetSingle() {
   const [cliente, setCliente] = useState({});
-  const [pet, setPet] = useState({})
-  
+  const [pet, setPet] = useState({});
+  const [show, setShow] = useState(false);
+  const [idPet, setIdPet] = useState(null);
+  console.log(idPet)
+  const navigate = useNavigate(); // adicionado
+
   const { id } = useParams();
   const dataNasc = new Date(`${pet.dataNasc}T00:00:00`);
-  
+
+  const handleClose = () => {
+    setIdPet(null);
+    setShow(false);
+  };
+
+  const handleShow = (id) => {
+    setIdPet(id);
+    setShow(true);
+  };
+
+  function onDelete() {
+    axios
+      .delete(`http://localhost:3001/pets/${idPet}`)
+      .then((response) => {
+        toast.success(response.data.message, {
+          position: "bottom-right",
+          duration: 2000,
+        });
+        navigate("/pets"); // adicionado
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.message, {
+          position: "bottom-right",
+          duration: 2000,
+        });
+      });
+    handleClose();
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:3001/pets/${id}`)
@@ -36,7 +71,6 @@ export function PetSingle() {
         });
     }
   }, [pet]);
-
 
   return (
     <div className="container-singlePet">
@@ -74,14 +108,30 @@ export function PetSingle() {
               <Card.Title>{dataNasc.toLocaleDateString("pt-BR")}</Card.Title>
             </Card.Body>
             <div className="container-btn-pets">
-              <Button>
+              <Button onClick={() => handleShow(pet.id)}>
                 <i className="bi bi-trash-fill"></i>
               </Button>
-              <Button>
+              <Button to={`/`}>
                 <i className="bi bi-pencil-fill"></i>
               </Button>
             </div>
           </Card>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Confirmação</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Tem certeza que deseja excluir o pet {pet.nome}?
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="danger" onClick={handleClose}>
+                Cancelar
+              </Button>
+              <Button variant="primary" onClick={onDelete}>
+                Excluir
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     </div>

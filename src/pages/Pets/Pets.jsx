@@ -12,15 +12,16 @@ export function Pets() {
   const [show, setShow] = useState(false);
   const [idPet, setIdPet] = useState(null);
 
- 
   const handleClose = () => {
     setIdPet(null);
     setShow(false);
   };
+
   const handleShow = (id) => {
     setIdPet(id);
     setShow(true);
   };
+
   useEffect(() => {
     initializeTable();
   }, []);
@@ -36,25 +37,26 @@ export function Pets() {
       });
   }
   const navigate = useNavigate();
-   function onDelete() {
-     axios
-       .delete(`http://localhost:3001/pets/${idPet}`)
-       .then((response) => {
-         toast.success(response.data.message, {
-           position: "bottom-right",
-           duration: 2000,
-         });
-         initializeTable();
-       })
-       .catch((error) => {
-         console.log(error);
-         toast.error(error.response.data.message, {
-           position: "bottom-right",
-           duration: 2000,
-         });
-       });
-     handleClose();
-   }
+  
+  function onDelete() {
+    axios
+      .delete(`http://localhost:3001/pets/${idPet}`)
+      .then((response) => {
+        toast.success(response.data.message, {
+          position: "bottom-right",
+          duration: 2000,
+        });
+        initializeTable();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.response.data.message, {
+          position: "bottom-right",
+          duration: 2000,
+        });
+      });
+    handleClose();
+  }
 
   return (
     <div className="container container-lista-pets">
