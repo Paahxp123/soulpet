@@ -10,9 +10,11 @@ export function Header() {
                     <img src={logo} alt="SoulPet" />
                 </Link>
                 <div className="d-flex gap-5">
+                    <Link to="/produto">Produtos</Link>
                     <Link to="/clientes">Clientes</Link>
                     <Link to="/pets">Pets</Link>
                     <Link to="/Servicos">Serviços</Link>
+
                 </div>
             </nav>
         </header>
