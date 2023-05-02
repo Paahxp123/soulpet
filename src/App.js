@@ -8,7 +8,14 @@ import { NovoPet } from "./pages/NovoPet/NovoPet";
 import { Pets } from "./pages/Pets/Pets";
 import { PetSingle } from "./pages/PetSingle/PetSingle";
 import { AtualizarProduto } from "./pages/AtualizarProduto/AtualizarProduto";
+<<<<<<< Updated upstream
 import { EditaPet } from "./pages/EditaPet/EditaPet";
+=======
+import { Servicos } from "./pages/Servicos/Servicos";
+import { NovoServico } from "./pages/Servicos/NovoServico";
+import { EditaServicos } from "./pages/Servicos/EditarServico";
+
+>>>>>>> Stashed changes
 
 function App() {
   return (
@@ -24,6 +31,9 @@ function App() {
           <Route path="/clientes/novo" element={<NovoCliente />} />
           <Route path="/clientes/editar/:id" element={<EditaCliente />} />
           <Route path="/produtos/atualizar/:id" element={<AtualizarProduto />} />
+          <Route path="/servicos" element={<Servicos />} />
+          <Route path="/servicos/novo" element={<NovoServico />} />
+          <Route path="/servicos/editar/:id" element={<EditaServicos />} />
         </Route>
       </Routes>
     </BrowserRouter>
