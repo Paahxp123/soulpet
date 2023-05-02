@@ -12,7 +12,6 @@ export function PetSingle() {
   const [pet, setPet] = useState({});
   const [show, setShow] = useState(false);
   const [idPet, setIdPet] = useState(null);
-  console.log(idPet)
   const navigate = useNavigate(); // adicionado
 
   const { id } = useParams();
@@ -76,7 +75,7 @@ export function PetSingle() {
     <div className="container-singlePet">
       <div className="container">
         <Button as={Link} to="/pets" className="btn-brown mb-5">
-          <i class="bi bi-arrow-bar-left"></i> Voltar
+          <i className="bi bi-arrow-bar-left"></i> Voltar
         </Button>
         <h1>Dados do pet</h1>
         <div className="card-container">
@@ -111,9 +110,11 @@ export function PetSingle() {
               <Button onClick={() => handleShow(pet.id)}>
                 <i className="bi bi-trash-fill"></i>
               </Button>
-              <Button to={`/`}>
-                <i className="bi bi-pencil-fill"></i>
-              </Button>
+              <Link to={`/pets/editar/${pet.id}`}>
+                <Button>
+                  <i className="bi bi-pencil-fill"></i>
+                </Button>
+              </Link>
             </div>
           </Card>
           <Modal show={show} onHide={handleClose}>

@@ -1,64 +1,86 @@
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import avatar from "../../assets/vet.png";
-import "./style.css";
+import { useNavigate, useParams } from "react-router-dom";
 
-export function NovoPet() {
-  const [clientes, setClientes] = useState([]);
-  const [nome, setNome] = useState("");
+export function EditaPet() {
+ const [clientes, setClientes] = useState([]);
+ const [dono, setDono] = useState([]);
+ const [nome, setNome] = useState("");
 
-  function handleNomeChange(event) {
-    setNome(event.target.value);
-  }
+ function handleNomeChange(event) {
+   setNome(event.target.value);
+ }
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
+ function handleClienteChange(event) {
+   setDono(event.target.value);
+ }
+
+ const {
+   register,
+   handleSubmit,
+   formState: { errors },
+   reset,
+ } = useForm();
+
+ const navigate = useNavigate();
+ const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/clientes")
+      .get(`http://localhost:3001/pets/${id}`)
       .then((response) => {
-        setClientes(response.data);
+        const { nome, tipo, porte, dataNasc, clienteId } = response.data;
+        reset({ nome, tipo, porte, dataNasc, clienteId });
+        setNome(nome);
+        setDono(response.data.clienteId);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [id, reset]);
 
-  function onSubmit(data) {
-    axios
-      .post("http://localhost:3001/pets", data)
-      .then((response) => {
-        const pet = response.data;
-        toast.success(`Pet ${pet.nome} adicionado.`, {
-          position: "bottom-right",
-          duration: 2000,
-        });
-        navigate("/pets");
-      })
-      .catch((error) => {
-        const message = error.response?.data?.message || "Algo deu errado.";
-        toast.error(message, {
-          position: "bottom-right",
-          duration: 2000,
-        });
-        console.log(error);
+ useEffect(() => {
+   axios
+     .get("http://localhost:3001/clientes")
+     .then((response) => {
+       setClientes(response.data);
+     })
+     .catch((error) => {
+       console.log(error);
+     });
+ }, []);
+
+
+async function onSubmit(data) {
+  const modifiedData = { ...data, clienteId: parseInt(data.clienteId) };
+  axios
+    .put(`http://localhost:3001/pets/${id}`, modifiedData)
+    .then((response) => {
+      toast.success(`Pet ${nome} editado.`, {
+        position: "bottom-right",
+        duration: 2000,
       });
-  }
+      navigate(`/pets/pet/${id}`);
+    })
+    .catch((error) => {
+      toast.error("Algo deu errado.", {
+        position: "bottom-right",
+        duration: 2000,
+      });
+      console.log(error);
+    });
+}
+
 
   return (
     <div className="form-pet">
       <div className="container">
-        <Button as={Link} to="/pets" className="btn-brown">
+        <Button as={Link} to={`/pets/pet/${id}`} className="btn-brown">
           <i className="bi bi-arrow-bar-left"></i> Voltar
         </Button>
         <div className="container-formPet">
@@ -159,6 +181,7 @@ export function NovoPet() {
                     message: "O dono do pet é obrigatório",
                   })}
                   isInvalid={errors.clienteId ? true : false}
+                  onChange={handleClienteChange}
                 >
                   <option value="">Selecione o dono do pet</option>
                   {clientes.map((cliente) => (
@@ -175,7 +198,7 @@ export function NovoPet() {
               </Form.Group>
 
               <Button className="btn-formPet" type="submit">
-                Cadastrar
+                Salvar alteraçoes
               </Button>
             </Form>
           </div>

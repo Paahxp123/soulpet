@@ -11,7 +11,8 @@ export function Pets() {
   const [pets, setPets] = useState(null);
   const [show, setShow] = useState(false);
   const [idPet, setIdPet] = useState(null);
-
+  
+  const navigate = useNavigate();
   const handleClose = () => {
     setIdPet(null);
     setShow(false);
@@ -21,6 +22,7 @@ export function Pets() {
     setIdPet(id);
     setShow(true);
   };
+
 
   useEffect(() => {
     initializeTable();
@@ -36,7 +38,6 @@ export function Pets() {
         console.log(error);
       });
   }
-  const navigate = useNavigate();
   
   function onDelete() {
     axios
@@ -72,8 +73,8 @@ export function Pets() {
         ) : (
           pets.map((pet) => {
             return (
-              <>
-                <Card key={pet.id} className="card-pet">
+              <div key={pet.id}>
+                <Card className="card-pet">
                   <div
                     onClick={() => navigate(`/pets/pet/${pet.id}`)}
                     style={{ cursor: "pointer" }}
@@ -107,9 +108,11 @@ export function Pets() {
                     <Button onClick={() => handleShow(pet.id)}>
                       <i className="bi bi-trash-fill"></i>
                     </Button>
-                    <Button to={`/`}>
-                      <i className="bi bi-pencil-fill"></i>
-                    </Button>
+                    <Link to={`/pets/editar/${pet.id}`}>
+                      <Button>
+                        <i className="bi bi-pencil-fill"></i>
+                      </Button>
+                    </Link>
                   </div>
                 </Card>
                 <Modal show={show} onHide={handleClose}>
@@ -129,7 +132,7 @@ export function Pets() {
                     </Button>
                   </Modal.Footer>
                 </Modal>
-              </>
+              </div>
             );
           })
         )}
