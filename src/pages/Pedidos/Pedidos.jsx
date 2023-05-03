@@ -102,7 +102,7 @@ export function Pedidos() {
   return (
     <div className="section-container container">
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Pedidos</h1>
+        <h1 className="mb-5">Pedidos</h1>
         <Button as={Link} to="/pedidos/novo" className="btn-brown">
           <i className="bi bi-plus-lg me-2"></i> Pedido
         </Button>
@@ -148,7 +148,7 @@ export function Pedidos() {
             </Button>
           </Col>
 
-          <Table striped bordered hover align="center">
+          <Table table table-borderless className="mt-5">
             <thead align="center">
               <tr>
                 <th>Cliente</th>
@@ -183,13 +183,10 @@ export function Pedidos() {
                       >
                         <i className="bi bi-pencil-fill"></i>
                       </Button>
-                      <Button
-                        as={Link}
-                        to={`/pedidos/detalhes/${pedido.id}`}
-                        className="btn-brown"
-                      >
-                        <i class="bi bi-three-dots-vertical"></i>
-                      </Button>
+                      
+                      <Link to={`/pedidos/detalhes/${pedido.id}`}>
+                        <i className="bi bi-three-dots-vertical detalhe-icon"></i>
+                      </Link>
                     </td>
                   </tr>
                 ))}
