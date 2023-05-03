@@ -4,12 +4,12 @@ import { Toaster } from "react-hot-toast";
 
 export function Root() {
     return (
-        <>
-            <Header />
-            <main>
-                <Outlet />
-            </main>
-            <Toaster />
-        </>
-    )
+      <>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Toaster />
+      </>
+    );
 }

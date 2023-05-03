@@ -4,7 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import avatar from "../../assets/vet.png";
+import avatar from "../../assets/icons/id-card.png";
 import { useNavigate, useParams } from "react-router-dom";
 
 export function EditaPet() {
