@@ -128,7 +128,7 @@ export function Home() {
                 <Card.Text>Pedidos</Card.Text>
               </Card.Body>
               <div className="overlay overlay-hidden">
-                <Link to={"/"} className="overlay-link">
+                <Link to={"/pedidos"} className="overlay-link">
                   Ver Todos
                   <i className="bi bi-chevron-right"></i>
                 </Link>
