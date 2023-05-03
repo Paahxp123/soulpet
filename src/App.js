@@ -14,6 +14,10 @@ import { NovoServico } from "./pages/Servicos/NovoServico";
 import { EditaServicos } from "./pages/Servicos/EditarServico";
 import {InsercaoDeProdutos} from "./pages/InsercaoDeProdutos/InsercaoDeProdutos";
 import { Produtos } from "./pages/Produtos/Produtos";
+import { Pedidos } from "./pages/Pedidos/Pedidos";
+import { NovoPedido } from "./pages/NovoPedido/NovoPedido";
+import { DetalhesPedidos } from "./pages/DetalhesPedido/DetalhesPedido";
+
 
 function App() {
   return (
@@ -34,6 +38,9 @@ function App() {
           <Route path="/servicos/editar/:id" element={<EditaServicos />} />
           <Route path="/produto/novo" element={<InsercaoDeProdutos/>} />
           <Route path="/produto" element={<Produtos/>} />
+          <Route path="/pedidos" element={<Pedidos />} />
+          <Route path="/pedidos/novo" element={<NovoPedido />} />
+          <Route path="/pedidos/detalhes/:id" element={<DetalhesPedidos />} />
         </Route>
       </Routes>
     </BrowserRouter>
