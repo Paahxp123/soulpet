@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Modal, Table } from "react-bootstrap";
+import { Button,Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import { ModalDelete } from "../../components/Modal/Modal";
 import { toast } from "react-hot-toast";
 
 export function Servicos() {
@@ -93,20 +94,14 @@ export function Servicos() {
           </tbody>
         </Table>
       )}
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Confirmação</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Tem certeza que deseja excluir o serviço?</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancelar
-          </Button>
-          <Button variant="danger" onClick={onDelete}>
-            Excluir
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ModalDelete
+        show={show}
+        handleClose={handleClose}
+        onDelete={onDelete}
+        mensagem={`Tem certeza que deseja excluir o serviço ${
+          idServico && servicos.find((servico) => servico.id === idServico)?.nome
+        }?`}
+      />
     </div>
   );
 }

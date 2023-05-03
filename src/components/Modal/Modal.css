@@ -1,0 +1,53 @@
+.modal-centered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+    border: none !important;
+}
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+.delete-icon{
+    font-size: 60px;
+    color: red;
+}
+
+.modal-body{
+    border: none !important;
+}
+
+.modal-footer{
+    border-top: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-footer .btn-danger{
+    background:#c1c1c1 ;
+    border: none;
+}
+
+.modal-footer .btn-danger:hover{
+    background:#7c7c7c ;
+    border: none;
+}
+
+.modal-footer .btn-primary{
+    background:#f15e5e ;
+    border: none;
+}
+
+.modal-footer .btn-primary:hover{
+    background:#ee3535 ;
+    border: none;
+}

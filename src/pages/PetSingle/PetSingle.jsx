@@ -2,9 +2,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Button, Card, Modal } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import avatar from "../../assets/icons/id-card.png";
 import { toast } from "react-hot-toast";
+import { ModalDelete } from "../../components/Modal/Modal";
 import "./style.css";
 
 export function PetSingle() {
@@ -117,22 +118,12 @@ export function PetSingle() {
               </Link>
             </div>
           </Card>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Confirmação</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Tem certeza que deseja excluir o pet {pet.nome}?
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="danger" onClick={handleClose}>
-                Cancelar
-              </Button>
-              <Button variant="primary" onClick={onDelete}>
-                Excluir
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          <ModalDelete
+            show={show}
+            handleClose={handleClose}
+            onDelete={onDelete}
+            mensagem={`Tem certeza que deseja excluir o pet ${pet.nome}?`}
+          />
         </div>
       </div>
     </div>

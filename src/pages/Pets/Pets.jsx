@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Card, Modal } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import avatar from "../../assets/icons/id-card.png";
 import { toast } from "react-hot-toast";
+import { ModalDelete } from "../../components/Modal/Modal";
 import "./style.css";
 
 export function Pets() {
@@ -115,23 +116,14 @@ export function Pets() {
                     </Link>
                   </div>
                 </Card>
-                <Modal show={show} onHide={handleClose}>
-                  <Modal.Header closeButton>
-                    <Modal.Title>Confirmação</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    Tem certeza que deseja excluir o pet{" "}
-                    {idPet && pets.find((pet) => pet.id === idPet)?.nome} ?
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                      Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={onDelete}>
-                      Excluir
-                    </Button>
-                  </Modal.Footer>
-                </Modal>
+                <ModalDelete
+                  show={show}
+                  handleClose={handleClose}
+                  onDelete={onDelete}
+                  mensagem={`Tem certeza que deseja excluir o pet ${
+                    idPet && pets.find((pet) => pet.id === idPet)?.nome
+                  } ?`}
+                />
               </div>
             );
           })

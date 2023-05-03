@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from "axios";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -13,7 +13,7 @@ export function InsercaoDeProdutos() {
         axios.post("http://localhost:3001/Produtos", data)
             .then(response => {
                 toast.success("Produto adicionado.", { position: "bottom-right", duration: 2000 });
-                navigate("/clientes");
+                navigate("/produto");
             })
             .catch(error => {
                 toast.error("Algo deu errado.", { position: "bottom-right", duration: 2000 });
