@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
-import avatar from "../../assets/vet.png";
+import avatar from "../../assets/icons/id-card.png";
 import { toast } from "react-hot-toast";
 import "./style.css";
 

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Modal } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
-import avatar from "../../assets/vet.png";
+import avatar from "../../assets/icons/id-card.png";
 import { toast } from "react-hot-toast";
 import "./style.css";
 

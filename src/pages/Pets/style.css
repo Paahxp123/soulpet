@@ -26,7 +26,7 @@
     margin-bottom: 20px;
 }
 
-.container-lista-pets .card-img{
+.card-img{
     width: 100%;
     display: flex;
     justify-content: center;
