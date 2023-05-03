@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Button, Modal, Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
+import { ModalDelete } from "../../components/Modal/Modal";
 import { toast } from "react-hot-toast";
 
 export function Produtos() {
@@ -48,62 +49,55 @@ export function Produtos() {
     }
 
     return (
-        <div className="produtos container">
-            <div className="d-flex justify-content-between align-items-center">
-                <h1>Produtos</h1>
-                <Button as={Link} to="/produto/novo">
-                    <i className="bi bi-plus-lg me-2"></i> Produto
-                </Button>
-            </div>
-            {
-                produtos === null ?
-                    <Loader />
-                    :
-                    <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Preço</th>
-                                <th>Descrição</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {produtos.map(produto => {
-                                return (
-                                    <tr key={produto.id}>
-                                        <td>{produto.nome}</td>
-                                        <td>{produto.preco}</td>
-                                        <td>{produto.descricao}</td>
-                                        <td className="d-flex gap-2">
-                                            <Button onClick={() => handleShow(produto.id)}>
-                                                <i className="bi bi-trash-fill"></i>
-                                            </Button>
-                                            <Button as={Link} to={`/produtos/editar/${produto.id}`}>
-                                                <i className="bi bi-pencil-fill"></i>
-                                            </Button>
-                                        </td>
-                                    </tr>
-                                )
-                            })}
-                        </tbody>
-                    </Table>
-            }
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmação</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Tem certeza que deseja excluir o produto?</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
-                        Cancelar
-                    </Button>
-                    <Button variant="primary" onClick={onDelete}>
-                        Excluir
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-        </div> 
+      <div className="produtos container">
+        <div className="d-flex justify-content-between align-items-center">
+          <h1>Produtos</h1>
+          <Button as={Link} to="/produto/novo">
+            <i className="bi bi-plus-lg me-2"></i> Produto
+          </Button>
+        </div>
+        {produtos === null ? (
+          <Loader />
+        ) : (
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {produtos.map((produto) => {
+                return (
+                  <tr key={produto.id}>
+                    <td>{produto.nome}</td>
+                    <td>{produto.preco}</td>
+                    <td>{produto.descricao}</td>
+                    <td className="d-flex gap-2">
+                      <Button onClick={() => handleShow(produto.id)}>
+                        <i className="bi bi-trash-fill"></i>
+                      </Button>
+                      <Button as={Link} to={`/produtos/editar/${produto.id}`}>
+                        <i className="bi bi-pencil-fill"></i>
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        )}
+        <ModalDelete
+          show={show}
+          handleClose={handleClose}
+          onDelete={onDelete}
+          mensagem={`Tem certeza que deseja excluir o produto ${
+            idProduto && produtos.find((produto) => produto.id === idProduto)?.nome
+          } ?`}
+        />
+      </div>
     );
 }
   
