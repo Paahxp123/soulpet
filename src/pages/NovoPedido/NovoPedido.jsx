@@ -46,7 +46,7 @@ export function NovoPedido() {
                     position: "bottom-right",
                     duration: 2000,
                 });
-                // navigate("/pedidos");
+                navigate("/pedidos");
             })
             .catch((error) => {
                 toast.error("Algo deu errado", {
