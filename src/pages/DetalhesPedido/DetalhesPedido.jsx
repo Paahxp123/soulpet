@@ -70,7 +70,7 @@ export function DetalhesPedido() {
 
             <div className="d-flex mx-auto justify-content-center aligm-items-center mt-3">
                 <div className="d-flex flex-column align-items-center gap-3">
-                    <div className="avatar-pedidos" style={{border: "2px solid black", borderRadius: "50%", margin}}>
+                    <div className="avatar-pedidos" style={{border: "2px solid black", borderRadius: "50%"}}>
                         <img src={avatar} alt="Cliente" style={{width: "300px"}}/>
                     </div>
                 {/* <h3>{cliente.nome}</h3> */}
