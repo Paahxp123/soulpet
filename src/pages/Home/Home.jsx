@@ -34,7 +34,7 @@ export function Home() {
         <h1>Dashboard</h1>
         <div className="card-container-dashboard">
           <Card className="card-pet card-home">
-            <div className="card-body">
+            <div className="card-body-dashboard">
               <div className="card-img-home">
                 <img src={pet} alt="" />
               </div>
@@ -51,7 +51,7 @@ export function Home() {
             </div>
           </Card>
           <Card className="card-pet card-home">
-            <div className="card-body">
+            <div className="card-body-dashboard">
               <div className="card-img-home">
                 <img src={cliente} alt="" />
               </div>
@@ -68,7 +68,7 @@ export function Home() {
             </div>
           </Card>
           <Card className="card-pet card-home">
-            <div className="card-body">
+            <div className="card-body-dashboard">
               <div className="card-img-home">
                 <img src={produto} alt="" />
               </div>
@@ -85,7 +85,7 @@ export function Home() {
             </div>
           </Card>
           <Card className="card-pet card-home">
-            <div className="card-body">
+            <div className="card-body-dashboard">
               <div className="card-img-home">
                 <img src={agendamento} alt="" />
               </div>
@@ -102,7 +102,7 @@ export function Home() {
             </div>
           </Card>
           <Card className="card-pet card-home">
-            <div className="card-body">
+            <div className="card-body-dashboard">
               <div className="card-img-home">
                 <img src={servico} alt="" />
               </div>
@@ -119,7 +119,7 @@ export function Home() {
             </div>
           </Card>
           <Card className="card-pet card-home">
-            <div className="card-body">
+            <div className="card-body-dashboard">
               <div className="card-img-home">
                 <img src={pedidos} alt="" />
               </div>
@@ -128,7 +128,7 @@ export function Home() {
                 <Card.Text>Pedidos</Card.Text>
               </Card.Body>
               <div className="overlay overlay-hidden">
-                <Link to={"/"} className="overlay-link">
+                <Link to={"/pedidos"} className="overlay-link">
                   Ver Todos
                   <i className="bi bi-chevron-right"></i>
                 </Link>

@@ -6,7 +6,6 @@ import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import avatar from "../../assets/icons/id-card.png";
-import "./style.css";
 
 export function NovoPet() {
   const [clientes, setClientes] = useState([]);
@@ -56,19 +55,19 @@ export function NovoPet() {
   }
 
   return (
-    <div className="form-pet">
+    <div className="form">
       <div className="container">
         <Button as={Link} to="/pets" className="btn-brown">
           <i className="bi bi-arrow-bar-left"></i> Voltar
         </Button>
-        <div className="container-formPet">
+        <div className="container-form">
           <div className="d-flex flex-column align-items-center gap-3">
             <div className="avatar-pet">
               <img src={avatar} alt="SoulPet" />
             </div>
             <h3>{nome ? nome : "Meu nome é"}</h3>
           </div>
-          <div className="formPet">
+          <div className="form-content">
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group className="mb-3">
                 <Form.Label>Nome</Form.Label>

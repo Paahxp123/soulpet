@@ -1,56 +1,57 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { ModalDelete } from "../../components/Modal/Modal";
 import { Button, Modal, Table, Form, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
 
 export function Pedidos() {
-    const [pedidos, setPedidos] = useState(null);
-    const [show, setShow] = useState(false);
-    const [idPedido, setIdPedido] = useState(null);
-    const [clientes, setClientes] = useState([]);
-    const [produtos, setProdutos] = useState([]);
-    const [filtrarCliente, setFiltrarCliente] = useState("");
-    const [filtrarProduto, setFiltrarProduto] = useState("");
+  const [pedidos, setPedidos] = useState(null);
+  const [show, setShow] = useState(false);
+  const [idPedido, setIdPedido] = useState(null);
+  const [clientes, setClientes] = useState([]);
+  const [produtos, setProdutos] = useState([]);
+  const [filtrarCliente, setFiltrarCliente] = useState("");
+  const [filtrarProduto, setFiltrarProduto] = useState("");
 
-    const handleClose = () => {
-        setIdPedido(null);
-        setShow(false);
-    };
-    const handleShow = (id) => {
-        setIdPedido(id);
-        setShow(true);
-    };
+  const handleClose = () => {
+    setIdPedido(null);
+    setShow(false);
+  };
+  const handleShow = (id) => {
+    setIdPedido(id);
+    setShow(true);
+  };
 
-    const resetFiltros = () => {
-        setFiltrarCliente("");
-        setFiltrarProduto("");
-    };
+  const resetFiltros = () => {
+    setFiltrarCliente("");
+    setFiltrarProduto("");
+  };
 
-    useEffect(() => {
-        axios
-            .get("http://localhost:3001/clientes")
-            .then((response) => {
-                setClientes(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        axios
-            .get("http://localhost:3001/produtos")
-            .then((response) => {
-                setProdutos(response.data);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/clientes")
+      .then((response) => {
+        setClientes(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axios
+      .get("http://localhost:3001/produtos")
+      .then((response) => {
+        setProdutos(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
-    useEffect(() => {
-        initializeTable();
-    }, [filtrarCliente, filtrarProduto]);
-
+  useEffect(() => {
+    initializeTable();
+  }, [filtrarCliente, filtrarProduto])
+  
     function initializeTable() {
         axios
             .get("http://localhost:3001/pedidos")

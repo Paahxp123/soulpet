@@ -56,19 +56,19 @@ export function Servicos() {
   }
 
   return (
-    <div className="servicos container">
+    <div className="section-container container">
       <div className="d-flex justify-content-between align-items-center">
-        <h1>Servicos</h1>
-        <Button as={Link} to="/servicos/novo">
+        <h1 className="mb-5">Serviços</h1>
+        <Button as={Link} to="/servicos/novo" className="btn-brown">
           <i className="bi bi-plus-lg me-2"></i> Serviço
         </Button>
       </div>
       {servicos === null ? (
         <Loader />
       ) : (
-        <Table striped bordered hover>
+        <Table table table-borderless>
           <thead>
-            <tr>
+            <tr style={{ textAlign: "center" }}>
               <th>Nome</th>
               <th>Preço</th>
               <th>Ações</th>
@@ -79,12 +79,19 @@ export function Servicos() {
               return (
                 <tr key={servico.id}>
                   <td>{servico.nome}</td>
-                  <td>{servico.preco}</td>
-                  <td className="d-flex gap-2">
-                    <Button onClick={() => handleShow(servico.id)}>
+                  <td>R$ {servico.preco},00</td>
+                  <td className="d-flex gap-2 justify-content-center">
+                    <Button
+                      onClick={() => handleShow(servico.id)}
+                      className="btn-brown"
+                    >
                       <i className="bi bi-trash-fill"></i>
                     </Button>
-                    <Button as={Link} to={`/servicos/editar/${servico.id}`}>
+                    <Button
+                      as={Link}
+                      to={`/servicos/editar/${servico.id}`}
+                      className="btn-brown"
+                    >
                       <i className="bi bi-pencil-fill"></i>
                     </Button>
                   </td>
@@ -99,7 +106,8 @@ export function Servicos() {
         handleClose={handleClose}
         onDelete={onDelete}
         mensagem={`Tem certeza que deseja excluir o serviço ${
-          idServico && servicos.find((servico) => servico.id === idServico)?.nome
+          idServico &&
+          servicos.find((servico) => servico.id === idServico)?.nome
         }?`}
       />
     </div>
