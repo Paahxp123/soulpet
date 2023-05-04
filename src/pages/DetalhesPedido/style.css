@@ -1,0 +1,30 @@
+.container-singlePet {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-singlePage {
+    min-width: 500px !important;
+}
+
+@media only screen and (max-width: 992px) {
+    .container-singlePet {
+        margin-top: 50px;
+    }
+    .card-pet {
+        margin-top: 20px;
+    }
+    .card-singlePage {
+        min-width: auto !important;
+    }
+}
