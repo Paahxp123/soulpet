@@ -55,6 +55,24 @@ export function NovoPedido() {
       });
   }
 
+        console.log(pedidos)
+        axios
+            .post("http://localhost:3001/pedidos", { pedidos })
+            .then((response) => {
+                toast.success("Pedido adicionado.", {
+                    position: "bottom-right",
+                    duration: 2000,
+                });
+                // navigate("/pedidos");
+            })
+            .catch((error) => {
+                toast.error("Algo deu errado", {
+                    position: "bottom-right",
+                    duration: 2000,
+                });
+            });
+    }
+
   useEffect(() => {
     mapearProdutos();
     mapearClientes();

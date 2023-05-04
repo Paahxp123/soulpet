@@ -1,7 +1,9 @@
+
+
 export function DetalhesPedidos() {
     return (
         <>
-            <h1>Detalhes do pedido</h1>
+            <h1>Detalhamento do pedido</h1>
         </>
-    )
+    );
 }
