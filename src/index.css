@@ -100,6 +100,13 @@
     font-weight: 800;
 }
 
+.container-form-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 
 /* FORMULÁRIO */
 .form {
