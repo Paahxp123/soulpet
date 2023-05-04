@@ -7,51 +7,51 @@ import { Loader } from "../../components/Loader/Loader";
 import { toast } from "react-hot-toast";
 
 export function Pedidos() {
-  const [pedidos, setPedidos] = useState(null);
-  const [show, setShow] = useState(false);
-  const [idPedido, setIdPedido] = useState(null);
-  const [clientes, setClientes] = useState([]);
-  const [produtos, setProdutos] = useState([]);
-  const [filtrarCliente, setFiltrarCliente] = useState("");
-  const [filtrarProduto, setFiltrarProduto] = useState("");
+    const [pedidos, setPedidos] = useState(null);
+    const [show, setShow] = useState(false);
+    const [idPedido, setIdPedido] = useState(null);
+    const [clientes, setClientes] = useState([]);
+    const [produtos, setProdutos] = useState([]);
+    const [filtrarCliente, setFiltrarCliente] = useState("");
+    const [filtrarProduto, setFiltrarProduto] = useState("");
 
-  const handleClose = () => {
-    setIdPedido(null);
-    setShow(false);
-  };
-  const handleShow = (id) => {
-    setIdPedido(id);
-    setShow(true);
-  };
+    const handleClose = () => {
+        setIdPedido(null);
+        setShow(false);
+    };
+    const handleShow = (id) => {
+        setIdPedido(id);
+        setShow(true);
+    };
 
-  const resetFiltros = () => {
-    setFiltrarCliente("");
-    setFiltrarProduto("");
-  };
+    const resetFiltros = () => {
+        setFiltrarCliente("");
+        setFiltrarProduto("");
+    };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3001/clientes")
-      .then((response) => {
-        setClientes(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    axios
-      .get("http://localhost:3001/produtos")
-      .then((response) => {
-        setProdutos(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    useEffect(() => {
+        axios
+            .get("http://localhost:3001/clientes")
+            .then((response) => {
+                setClientes(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        axios
+            .get("http://localhost:3001/produtos")
+            .then((response) => {
+                setProdutos(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, []);
 
-  useEffect(() => {
-    initializeTable();
-  }, [filtrarCliente, filtrarProduto])
-  
+    useEffect(() => {
+        initializeTable();
+    }, [filtrarCliente, filtrarProduto]);
+
     function initializeTable() {
         axios
             .get("http://localhost:3001/pedidos")
@@ -80,7 +80,6 @@ export function Pedidos() {
                     duration: 2000,
                 });
             });
-        handleClose();
     }
 
     return (
@@ -107,11 +106,16 @@ export function Pedidos() {
                         <Form.Control
                             as="select"
                             value={filtrarCliente}
-                            onChange={(event) => setFiltrarCliente(event.target.value)}
+                            onChange={(event) =>
+                                setFiltrarCliente(event.target.value)
+                            }
                         >
                             <option value="">Todos os clientes</option>
                             {clientes.map((cliente) => (
-                                <option key={cliente.clienteId} value={cliente.clienteId}>
+                                <option
+                                    key={cliente.clienteId}
+                                    value={cliente.clienteId}
+                                >
                                     {cliente.nome}
                                 </option>
                             ))}
@@ -122,11 +126,16 @@ export function Pedidos() {
                         <Form.Control
                             as="select"
                             value={filtrarProduto}
-                            onChange={(event) => setFiltrarProduto(event.target.value)}
+                            onChange={(event) =>
+                                setFiltrarProduto(event.target.value)
+                            }
                         >
                             <option value="">Todos os produtos</option>
                             {produtos.map((produto) => (
-                                <option key={produto.produtoId} value={produto.produtoId}>
+                                <option
+                                    key={produto.produtoId}
+                                    value={produto.produtoId}
+                                >
                                     {produto.nome}
                                 </option>
                             ))}
@@ -158,8 +167,12 @@ export function Pedidos() {
                             {pedidos
                                 .filter(
                                     (pedido) =>
-                                        pedido.cliente.nome.includes(filtrarCliente) &&
-                                        pedido.produto.nome.includes(filtrarProduto)
+                                        pedido.cliente.nome.includes(
+                                            filtrarCliente
+                                        ) &&
+                                        pedido.produto.nome.includes(
+                                            filtrarProduto
+                                        )
                                 )
                                 .map((pedido) => (
                                     <tr key={pedido.id}>
@@ -167,15 +180,25 @@ export function Pedidos() {
                                         <td>{pedido.produto.nome}</td>
                                         <td>{pedido.quantidade}</td>
                                         <td className="d-flex justify-content-around align-items-center mx-auto">
-                                            <Button onClick={() => handleShow(pedido.id)}>
+                                            <Button
+                                                onClick={() =>
+                                                    handleShow(pedido.pedidoId)
+                                                }
+                                            >
                                                 <i className="bi bi-trash-fill"></i>
                                             </Button>
 
-                                            <Button as={Link} to={`/pedidos/editar/${pedido.id}`}>
+                                            <Button
+                                                as={Link}
+                                                to={`/pedidos/editar/${pedido.pedidoId}`}
+                                            >
                                                 <i className="bi bi-pencil-fill"></i>
                                             </Button>
 
-                                            <Button as={Link} to={`/pedidos/detalhes/${pedido.id}`}>
+                                            <Button
+                                                as={Link}
+                                                to={`/pedidos/detalhes/${pedido.pedidoId}`}
+                                            >
                                                 <i class="bi bi-three-dots-vertical"></i>
                                             </Button>
                                         </td>
@@ -189,7 +212,9 @@ export function Pedidos() {
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmação</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Tem certeza que deseja excluir o pedido?</Modal.Body>
+                <Modal.Body>
+                    Tem certeza que deseja excluir o pedido?
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="danger" onClick={handleClose}>
                         Cancelar
