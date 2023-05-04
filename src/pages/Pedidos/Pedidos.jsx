@@ -53,24 +53,8 @@ export function Pedidos() {
   }, [filtrarCliente, filtrarProduto]);
 
   function initializeTable() {
-    const query = {};
-
-    if (filtrarCliente !== "") {
-      query.clienteId = filtrarCliente;
-    }
-
-    if (filtrarProduto !== "") {
-      query.produtoId = filtrarProduto;
-    }
-
-    const queryString = Object.keys(query)
-      .map((key) => key + "=" + query[key])
-      .join("&");
-
-    const url = "http://localhost:3001/pedidos?" + queryString;
-
     axios
-      .get(url)
+      .get("http://localhost:3001/pedidos")
       .then((response) => {
         setPedidos(response.data);
       })

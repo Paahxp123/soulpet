@@ -8,11 +8,6 @@ import { useNavigate, Link } from "react-router-dom";
 export function NovoPedido() {
   const [produtos, setProdutos] = useState([]);
   const [clientes, setClientes] = useState([]);
-  const [nome, setNome] = useState("");
-
-  function handleNomeChange(event) {
-    setNome(event.target.value);
-  }
 
   const {
     register,
