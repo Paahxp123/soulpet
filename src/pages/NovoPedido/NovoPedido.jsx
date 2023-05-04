@@ -38,6 +38,7 @@ export function NovoPedido() {
                 clienteId,
             };
         });
+        console.log(pedidos)
         axios
             .post("http://localhost:3001/pedidos", { pedidos })
             .then((response) => {
